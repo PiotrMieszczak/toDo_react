@@ -1,5 +1,10 @@
 {
     "toDo": [
-        
+        {
+            "id":1,
+            "task": "kupic mleko",
+            "isDone": false
+        }
+
     ]
 }
