@@ -8,31 +8,45 @@ document.addEventListener("DOMContentLoaded", function(){
             constructor(props){
                 super(props);
                 this.state={
-                    items: []
+                    items: [],
                 }
         }
         
-        fetchData(){
-            const url = "http://localhost:3000/toDo"
-
-            fetch(url)  
-                .then( r=>r.json() )  //return data in json format
-                .then( response =>{
-                    let newItems = this.state.items.slice();
-                    newItems.push(response);
-                    console.log(response);
-                    this.setState({
-                        items: newItems,
-                    })
-                })
-        }
         componentDidMount(){
-            this.fetchData();
-        
+            const url = "http://localhost:3000/items"
+    
+            fetch(url)
+                .then( response => {
+                    if(response.ok) { 
+                        return response.json()
+                    } else {
+                        throw new Error("error");
+                    }
+            })
+            .then(answer => {
+
+                this.setState({ 
+                    items: answer,
+                })
+
+            }).catch( err => {
+                console.log("Błąd", err);
+            })
+        }   
+
             
-        }
             render(){
-                return <div>TEST</div>
+                let items = [...this.state.items].map(item=>{
+                    return <li 
+                            key= {item.id}>{item.task}
+                        </li>
+                });
+
+                return <section>
+                            <ul>
+                                {items}
+                            </ul>
+                </section>
             }
     }
 
