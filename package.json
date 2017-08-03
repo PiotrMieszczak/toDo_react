@@ -6,9 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-   "dependencies": {
+  "dependencies": {
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
+    "react-super-responsive-table": "^0.3.0",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
@@ -30,5 +31,4 @@
     "url": "https://github.com/PiotrMieszczak/toDo_react/issues"
   },
   "homepage": "https://github.com/PiotrMieszczak/toDo_react#readme"
- 
 }

@@ -1,9 +1,36 @@
 {
-    "items": [
+    "user": [
         {
             "id":1,
-            "task": "kupic mleko",
+            "name": "Jacek",
             "isDone": false
+        },
+        {
+            "id":2,
+            "name": "Kasia",
+            "isDone": false
+        }
+
+    ],
+
+    "activities":[
+        {
+            "id": 1,
+            "userId": 1,
+            "date": "2017-01-20",
+            "desc": "sialal"
+        },
+        {
+            "id": 2,
+            "userId": 1,
+            "date": "2017-02-20",
+            "desc": "blabla"
+        },
+        {
+            "id": 3,
+            "userId": 2,
+            "date": "2017-01-20",
+            "desc": "blabla"
         }
     ]
 }
