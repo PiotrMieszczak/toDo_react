@@ -9,11 +9,13 @@ class Row extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            user: []
+            user: [],
+            userName: '',
         }
     }
 
     componentDidMount(){
+
         const id = this.props.activity.userId;
         const url = `http://localhost:3000/user/${id}`
         
@@ -22,11 +24,22 @@ class Row extends React.Component{
             .then( response =>{
                 this.setState({
                     user: response,
+                    userName: response.name,
                 })
             })
     }
+    
+    componentWillMount(){
+        console.log(this.props.activity);
+    }
 
-    render(){
+    render(){   
+            console.log(this.state.userName);
+
+            if(this.state.userName.indexOf(this.props.searchedName) === -1){
+                 return null;
+            }
+
             return <Tr key={this.props.activity.id}>
                         <Td >{this.props.activity.date}</Td>
                         <ApplicantName user={this.state.user} />

@@ -12,9 +12,7 @@ class ItemList extends React.Component{
     }
 
     componentDidMount(){
-
         const url = `http://localhost:3000/activities?_sort=date&_order=desc`
-        
         fetch( url )
             .then( r=>r.json())
             .then( response =>{
@@ -24,21 +22,21 @@ class ItemList extends React.Component{
             })
     }
 
-    handleEnterPressed = (e) => {
-        if (e.key == "Enter") {
+    handleEnterPressed = (event) => {
+        if (event.key == "Enter") {
             this.setState({
-                searchedName: e.target.target.value,
+                searchedName: event.target.value,
             })
         }
     }
-    handleonChange = (e) => {
+    handleonChange = (event) => {
             this.setState({
-                searchedName: e.target.target.value,
+                searchedName: event.target.value,
             })
     }
 
     render(){
-
+        console.log(this.state.searchedName)
         const rows = [...this.state.activities].map( activity =>{
             return <Row key={activity.id} searchedName={this.state.searchedName} activity={activity} ></Row>
         })
@@ -47,7 +45,7 @@ class ItemList extends React.Component{
                     <Tr>
                         <Th>Data</Th>
                         <Th>Name
-                        <input onChange={this.handleSearch} onKeyPress={this.handleEnterPressed}type="text"></input></Th>
+                        <input onChange={this.handleSearch} onKeyPress={this.handleEnterPressed} type="text"></input></Th>
                         <Th>Desc</Th>
                     </Tr>
                 </Thead>
