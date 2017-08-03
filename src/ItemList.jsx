@@ -14,13 +14,13 @@ class ItemList extends React.Component{
 
     componentDidMount(){
 
-        const url = `http://localhost:3000/db`
+        const url = `http://localhost:3000/activities?_sort=date&_order=asc`
         
         fetch( url )
             .then( r=>r.json())
             .then( response =>{
                 this.setState({
-                    activities: response.activities,
+                    activities: response,
                 })
             })
     }

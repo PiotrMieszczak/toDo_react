@@ -4,7 +4,6 @@ import ItemList from './ItemList.jsx';
 
 class List extends React.Component{
 
-
     render(){
         return <div>
                 <ItemList />
