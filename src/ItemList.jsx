@@ -1,20 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table'
-import ApplicantName from './ApplicantName.jsx';
-import ContactDesc from './ContactDesc.jsx';
-
+import Row from './Row.jsx';
 class ItemList extends React.Component{
     constructor(props){
         super(props);
         this.state={
             activities: [],
+            searchedName: '',
         }
     }
 
     componentDidMount(){
 
-        const url = `http://localhost:3000/activities?_sort=date&_order=asc`
+        const url = `http://localhost:3000/activities?_sort=date&_order=desc`
         
         fetch( url )
             .then( r=>r.json())
@@ -24,21 +23,31 @@ class ItemList extends React.Component{
                 })
             })
     }
+
+    handleEnterPressed = (e) => {
+        if (e.key == "Enter") {
+            this.setState({
+                searchedName: e.target.target.value,
+            })
+        }
+    }
+    handleonChange = (e) => {
+            this.setState({
+                searchedName: e.target.target.value,
+            })
+    }
+
     render(){
 
         const rows = [...this.state.activities].map( activity =>{
-            console.log(activity.id)
-            return <Tr key={activity.id}>
-                    <Td >{activity.date}</Td>
-                    <ApplicantName userId={activity.userId}/>
-                    <ContactDesc activity={activity}/>
-            </Tr>
+            return <Row key={activity.id} searchedName={this.state.searchedName} activity={activity} ></Row>
         })
         return <Table>
                 <Thead>
                     <Tr>
                         <Th>Data</Th>
-                        <Th>Name</Th>
+                        <Th>Name
+                        <input onChange={this.handleSearch} onKeyPress={this.handleEnterPressed}type="text"></input></Th>
                         <Th>Desc</Th>
                     </Tr>
                 </Thead>
